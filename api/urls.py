@@ -1,7 +1,8 @@
-"""mysite URL Configuration
+"""
+URL configuration for api project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.0/topics/http/urls/
+    https://docs.djangoproject.com/en/4.2/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -15,7 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from core.views import front
+from core.views import tempinfo, temp_detail, deleteLogJob, getLogJobs, createLogJob
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("", front, name ="front"),
+    path("tempinfo/", tempinfo, name="tempinfo"),
+    path("tempinfo/<int:pk>/", temp_detail, name = "detail"),
+
+    path('logjob', createLogJob),
+    path('logjob/<str:name>/delete', deleteLogJob),
+    path('logjobs', getLogJobs),
 ]
